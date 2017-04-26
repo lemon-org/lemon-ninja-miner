@@ -1,0 +1,17 @@
+{
+  "name": "lemon-ninja-miner",
+  "description": "awesome spa app",
+  "main": "app/index.js",
+  "authors": [
+    "SHAMMY <Shammy.bg1@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/lemon-org/lemon-ninja-miner",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
