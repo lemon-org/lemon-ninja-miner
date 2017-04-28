@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <td id='power'>{{power}}</td>
+        {{#each colMinesCount}}
+        <td>{{this}}</td>
+        {{/each}}
+    </tr>
+    {{#each field}}
+    <tr>
+        <td>{{lookup ../rows @index}}</td>
+        {{#each this}}
+        <td class='close cell'></td>
+        {{/each}} </tr>
+    {{/each}}
+</table>
