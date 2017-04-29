@@ -1,13 +1,13 @@
 <table>
     <tr>
-        <td id='power'>{{power}}</td>
+        <td id='power'>{{points}}</td>
         {{#each colMinesCount}}
         <td>{{this}}</td>
         {{/each}}
     </tr>
     {{#each field}}
     <tr>
-        <td>{{lookup ../rows @index}}</td>
+        <td>{{lookup ../rowMinesCount @index}}</td>
         {{#each this}}
         <td class='close cell'></td>
         {{/each}} </tr>

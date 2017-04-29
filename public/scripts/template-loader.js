@@ -8,7 +8,7 @@ var templateLoader = (function() {
                 resolve(cache[templateName]);
                 return;
             }
-            $.get(`../templates/${templateName}.handlebars`, (template) => {
+            $.get(`./templates/${templateName}.handlebars`, (template) => {
                 const compiledTemplate = Handlebars.compile(template);
                 cache[templateName] = compiledTemplate;
                 resolve(compiledTemplate);
@@ -22,3 +22,5 @@ var templateLoader = (function() {
         get
     }
 })();
+
+export {templateLoader};

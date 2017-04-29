@@ -17,10 +17,33 @@
     </div>
     <script src="../node_modules/systemjs/dist/system.js"></script>
     <script src="./bower_components/handlebars/handlebars.js"></script>
-    <script src="./scripts/system-config.js"></script>
+     <script src="../node_modules/navigo/lib/navigo.js"></script>
 
+    <script>
+        SystemJS.config({
+            'transpiler': 'plugin-babel',
+            'map': {
+                //system js files
+                'plugin-babel': '../node_modules/systemjs-plugin-babel/plugin-babel.js',
+                'systemjs-babel-build': '../node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
 
+                //app files
+                'main': './scripts/main.js',
+                'template-loader': './scripts/template-loader.js',
+                'puzzle': './scripts/models/puzzle-model.js',
+                'requester': './scripts/requester.js',
+                'data':'./scripts/data.js',
+                'puzzle-controller':'./scripts/controllers/puzzle-controller.js',
+                'map-controller':'./scripts/controllers/map-controller.js',
 
+                 //lib files
+                'jquery': './bower_components/jquery/dist/jquery.min.js',
+               // 'navigo':'../node_modules/navigo/lib/navigo.js',
+
+            }
+        });
+        System.import('main');
+    </script>
 
 </body>
 
