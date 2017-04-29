@@ -33,8 +33,8 @@ class Puzzle {
         this._points = points;
         this._difficultness = difficultness;
         this._repeatedTimes = repeatedTimes;
-        this._size = points - difficultness;
-        this._field = createField(points, difficultness);
+        this._size = points/10 - difficultness;
+        this._field = createField(points/10, difficultness);
         this.isLocked = true;
         this.isCurrent = false;
         this._scores = [];
@@ -96,12 +96,12 @@ function generateNextPuzzle(lastPuzzle) {
     let nextPuzzlePoints,
         nextPuzzleDifficultness,
         nextPuzzleRepeatedTimes;
-    const maxRepeatedTimes = lastPuzzle.points / 10 | 0 + 2;
+    const maxRepeatedTimes = lastPuzzle.points / 100 | 0 + 2;
 
     if (lastPuzzle.difficultness === 1) {
         nextPuzzleDifficultness = 3;
         if (lastPuzzle.repeatedTimes === maxRepeatedTimes) {
-            nextPuzzlePoints = lastPuzzle.points + 1;
+            nextPuzzlePoints = lastPuzzle.points + 10;
             nextPuzzleRepeatedTimes = 1;
         }
         else {
@@ -201,7 +201,7 @@ function initializeMines(field, size) {
     }
 }
 const puzzles = [];
-var puzzle1 = createPuzzle(6, 1, 1);
+var puzzle1 = createPuzzle(60, 1, 1);
 puzzle1.isLocked = false;
 puzzle1.isCurrent = true;
 puzzle1.id = 1;

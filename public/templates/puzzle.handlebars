@@ -1,15 +1,17 @@
 <table>
     <tr>
-        <td id='power'>{{points}}</td>
-        {{#each colMinesCount}}
+        <td id='power'><span id="total-points">{{points}}</span>/<span id="current-points">{{points}}</span></td>
+        {{#each rowMinesCount}}
         <td>{{this}}</td>
         {{/each}}
     </tr>
     {{#each field}}
     <tr>
-        <td>{{lookup ../rowMinesCount @index}}</td>
+        <td>{{lookup ../colMinesCount @index}}</td>
         {{#each this}}
         <td class='close cell'></td>
         {{/each}} </tr>
     {{/each}}
 </table>
+
+<!--buton for high score
