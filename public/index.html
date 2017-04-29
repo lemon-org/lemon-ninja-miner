@@ -15,17 +15,17 @@
             <br> under construction
         </h1>-->
     </div>
-    <script src="../node_modules/systemjs/dist/system.js"></script>
+    <script src="./systemjs/dist/system.js"></script>
     <script src="./bower_components/handlebars/handlebars.js"></script>
-     <script src="../node_modules/navigo/lib/navigo.js"></script>
+     <script src="./navigo/lib/navigo.js"></script>
 
     <script>
         SystemJS.config({
             'transpiler': 'plugin-babel',
             'map': {
                 //system js files
-                'plugin-babel': '../node_modules/systemjs-plugin-babel/plugin-babel.js',
-                'systemjs-babel-build': '../node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
+                'plugin-babel': './systemjs-plugin-babel/plugin-babel.js',
+                'systemjs-babel-build': './systemjs-plugin-babel/systemjs-babel-browser.js',
 
                 //app files
                 'main': './scripts/main.js',
