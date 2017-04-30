@@ -4,7 +4,7 @@
   "description": "awesome spa app",
   "main": "app/index.js",
   "scripts": {
-    "restart": "./node_modules/.bin/nodemon app/index.js",
+    "restart": "./node_modules/.bin/nodemon ./app/index.js",
     "start": "node app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "bower install"
@@ -20,9 +20,14 @@
   },
   "homepage": "https://github.com/lemon-org/lemon-ninja-miner#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "bower": "^1.8.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "navigo": "^4.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "systemjs": "^0.20.12",
     "systemjs-plugin-babel": "0.0.21"
   },
