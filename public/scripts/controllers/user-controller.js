@@ -48,7 +48,7 @@ class UserController {
     login() {
         templateLoader.get('login')
             .then((template) => {
-                $root.html(templateH);
+                $root.html(template);
             })
             .then(() => {
                 $('#btn-login').on('click', (ev) => {
@@ -65,9 +65,10 @@ class UserController {
                             window.location = '#/map';
                         });
                 });
-            }
+            });
 
+    }
 }
-    const userController = new UserController();
+const userController = new UserController();
 
-export {userController};
+export { userController };

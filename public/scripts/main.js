@@ -1,11 +1,12 @@
 import * as mapController from 'map-controller';
 import * as puzzleController from 'puzzle-controller';
-//import * as userController from 'user-controller';
+import {userController} from 'user-controller';
 
 let router = new Navigo(null, true);
 
 router
-    .on('/', () => { router.navigate('/login'); })
+    .on('/', () => { router.navigate('/login') })
+    .on('/login', userController.login)
     .on('map', () => mapController.get())
     .on('puzzle/:id', (params) => puzzleController.get(params))
     //       .on('/auth', userController.get)
