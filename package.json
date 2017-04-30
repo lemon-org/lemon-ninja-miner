@@ -4,6 +4,7 @@
   "description": "awesome spa app",
   "main": "app/index.js",
   "scripts": {
+    "restart" : "./node_modules/.bin/nodemon app/index.js",
     "start": "node app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "bower install"
@@ -27,5 +28,8 @@
   },
   "engines": {
     "node": "7.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
