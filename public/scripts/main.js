@@ -6,6 +6,7 @@ let router = new Navigo(null, true);
 
 router
     .on('/', () => { router.navigate('/login') })
+    .on('/register', userController.register)
     .on('/login', userController.login)
     .on('map', () => mapController.get())
     .on('puzzle/:id', (params) => puzzleController.get(params))

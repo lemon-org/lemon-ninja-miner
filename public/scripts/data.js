@@ -1,4 +1,4 @@
-import * as requester from 'requester';
+import { requester} from 'requester';
 import { puzzles } from 'puzzle';
 
 export function getPuzzle(id) { // triabva da vzima puzelite ot player
@@ -22,16 +22,19 @@ export function getPlayer() {
 
 export function registerPlayer(user) {
 
-    //
-
-    //puzzles - vzima puzelite ot igrata i pravi kopie v player
+    return new Promise((resolve,reject) => {
+        requester.post('/register',user)
+            .then(resolve)
+            .catch(reject);
+    })
 
 }
 
 export function loginPlayer(user) {
 
-    //
-
-    //puzzles - vzima puzelite ot igrata i pravi kopie v player
-
+    return new Promise((resolve,reject) => {
+        requester.post('/login', user)
+        .then(resolve)
+        .catch(reject);
+    });
 }

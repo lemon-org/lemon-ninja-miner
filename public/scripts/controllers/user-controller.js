@@ -53,8 +53,8 @@ class UserController {
             .then(() => {
                 $('#btn-login').on('click', (ev) => {
 
-                    let username = $('#userName-log').val(),
-                        password = $('#password-log').val();
+                    let username = $('#input-username').val(),
+                        password = $('#input-password').val();
 
                     let user = {
                         username,
@@ -62,7 +62,11 @@ class UserController {
                     };
                     loginPlayer(user)
                         .then((user) => {
+                            console.log(user);
                             window.location = '#/map';
+                        })
+                        .catch(err => {
+                            console.log(err);
                         });
                 });
             });
