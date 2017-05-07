@@ -1,10 +1,167 @@
-#root {
-    height: 300px;
-    background-color: black;
-    color: white;
-    text-align: center;    
+div,
+button,
+a,
+img,
+span,
+ul,
+li,table,tr,td {
+  margin: 0;
+  padding: 0;
+ 
+}
+body {
+    padding-top: 30px;
 }
 
-#root#warning {
-    font-size: 25px;
+.panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
+.panel-login>.panel-heading {
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #029f5b;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
+#map{	
+	margin-top: 100px;
+	list-style: none;
+	width: 250px;
+    display: flex;
+	flex-direction: column;               
+}
+
+#map>li:nth-child(3n){
+	width: 50px;
+    align-self: flex-end;
+	margin: 10px;
+}
+
+#map>li:nth-child(3n+1){
+	width: 50px;
+    align-self: center;
+	margin: 10px;
+}
+
+#map>li:nth-child(3n+2){
+	width: 50px;
+    align-self: flex-start;
+	margin: 10px;
+}
+
+#map>li>div{
+	text-align: center;
+	width: 50px;
+	height: 60px;
+}
+  
+.level{
+	width: 50px;
+	height: 50px;
+}
+
+.cell{
+	margin: 1px;
+    width: 50px;
+    height: 50px;    
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+
+.close{
+    background-color: grey ;
+}
+
+.initialize-col{
+	margin: 1px 50px 1px 3px;
+	width: 1px;
+	font-size: 20px;
+	display: table-cell;
+    vertical-align: text-bottom;
+    word-wrap: break-word;
+    white-space:pre-wrap;
+	line-height: 12px;
+}
+
+.initialize-row{
+	margin: 1px;
+	width: 50px;
+	font-size: 20px;
+	text-align: right;
+}
+
+#power{
+	margin: 1px;
+		width:60px;
+			font-size: 20px;
+}
+
+.mark{
+    border: 2px solid blue;
+}
+
+.mine{
+	background-image: url('./images/bomb.jpg');
+	 background-size: 50px ;
+	 	background-repeat: no-repeat;
+}
+.row{
+	display: flex;
+}
+#endgame-message{ 
+	position : absolute;
+   	left : 20%;
+   	top : 20%;
+   	width :350px;
+    height : 350px;
+	background-image: url('./images/sad-ninja.jpg');
+	background-size: 350px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+   background-position: 160px 5px; 
+}
+
+#endgame-message span{
+	display: block;
+	font-size: 22px;
+	color: red;
+	margin: 10px;
+}
+
+#endgame-message button{
+margin: 100px;
+}
+
+

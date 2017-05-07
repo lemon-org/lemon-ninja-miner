@@ -1,0 +1,23 @@
+<div class="container">
+        <div class="row">
+            <div id='power'>
+                <span id="total-points">{{points}}</span>/<span id="current-points">{{points}}</span></div>
+            {{#each rowMinesCount}}
+            <div class="initialize-col">{{this}}</div>
+            {{/each}}
+        </div>
+
+        {{#each field}}
+        <div class="row">
+             <div class="initialize-row">{{lookup ../colMinesCount @index}}</div>
+            {{#each this}}
+            <div class='cell close'></div>
+            {{/each}}
+        </div>
+        {{/each}}
+
+    </div>
+    <a class="btn btn-logout" href="#/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+
+
+<!--buton for high score or just to show high score

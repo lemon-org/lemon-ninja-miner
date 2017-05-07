@@ -18,9 +18,12 @@
     "url": "https://github.com/lemon-org/lemon-ninja-miner/issues"
   },
   "homepage": "https://github.com/lemon-org/lemon-ninja-miner#readme",
-  "dependencies": {
+   "dependencies": {
     "bower": "^1.8.0",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "navigo": "^4.7.0",
+    "systemjs": "^0.20.12",
+    "systemjs-plugin-babel": "0.0.21"
   },
   "engines": {
     "node" : "7.9.0"

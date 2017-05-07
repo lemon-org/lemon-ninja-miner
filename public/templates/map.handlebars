@@ -1,0 +1,25 @@
+<div class="container">
+    <!-- or container-fluid -->
+    <div class="form-group">
+        <div class="col-sm-6 col-sm-offset-3">
+             <a href="#/logout" class="btn btn-logout" ><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+        </div>
+    </div>
+    <ul id="map">
+        {{#each this}} {{#if isLocked}}
+        <li>
+            <div>
+                <img src="./css/images/level-disabled.png" class="level disabled" id="{{id}}" /> {{id}}
+            </div>
+        </li>
+        {{else}}
+        <li>
+            <div>
+                <img src="./css/images/level.png" class="level active" id="{{id}}" /> {{id}}
+            </div>
+        </li>
+        {{/if}} {{/each}}
+    </ul>
+</div>
+
+<!-- logout button-->
