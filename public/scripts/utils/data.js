@@ -80,5 +80,5 @@ export function logoutUser() {
 }
 
 export function isLogged() {
-    return localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY) != null;
+    return localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY) !== null;
 }
