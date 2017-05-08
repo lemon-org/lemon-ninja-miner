@@ -1,10 +1,14 @@
-import requester from 'requester';
-import * as data from 'data';
-
 describe('Data layer tests', () => {  
-    describe('RegisterUser tests', () => {   
+    describe('RegisterUser tests', () => { 
+
+
+        it('Test test', () =>{
+            expect(2 + 2).to.equal(4);
+        });
+
+
         it('Expect register to make POST', (done) => {
-       console.log(1);
+
             const username = 'testuser';
             const passHash = '12341234';
             const email = 'test@email.com';
@@ -28,7 +32,7 @@ describe('Data layer tests', () => {
                 })
                 .then(done, done);
 
-            requesterStub.post.restore();
+            requesterStub.restore();
             //localStorage.setItem.restore();
         });   
     });

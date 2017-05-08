@@ -18,21 +18,20 @@
 
 <body>
     <div id="mocha"></div>
-
+    <!-- Unit tests -->
+    <script>
+        mocha.setup('bdd');
+        const { expect } = chai;
+    </script>
+    
     <script>
         System.import('data-tests');
     </script>
 
-   <!-- Unit tests -->
-   <script>
-        mocha.setup('bdd');
-        const { expect } = chai;
-   </script>
-
-   <script>
+    
+    <script>
         mocha.run();
-   </script>
-
+    </script>
 </body>
 
 </html>
