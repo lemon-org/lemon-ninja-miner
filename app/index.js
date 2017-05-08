@@ -103,7 +103,7 @@ let puzzleRouter = express.Router();
 puzzleRouter.get('/:level', (req,res) => {
     let level = req.params.level;
 
-    data.getPuzzleById(level)
+    data.getPuzzleByLevel(level)
         .then(puzzle => {
             if(puzzle){
                 res.json({puzzle});
