@@ -23,7 +23,8 @@ function endGame(message, img, $original) {
     $img.attr('src', img);
     promise
         .then(($popupDiv) => {
-            $('.container').addClass('disabled');
+            $('.container').addClass('stop-game');
+            $('iframe').hide();
             $popupDiv.show()
             return Promise.resolve($original);
         })
@@ -31,16 +32,17 @@ function endGame(message, img, $original) {
             $('.btn').on('click', function () {
                 $('.container').replaceWith($original.clone());
                 $popupDiv.hide();
+                 $('iframe').show();
                 router.navigate('map');
             });
         });
 }
 
 export function get(params) {
-    const { id } = params;
+    const { level } = params;
     Promise.all([
         templateLoader.get('puzzle'),
-        data.getPuzzle(id)
+        data.getPuzzle(level)
     ])
         .then(([template, puzzle]) => {
             $root.html(template(puzzle));
@@ -91,7 +93,7 @@ export function get(params) {
                 if (counter === emptyCellsCount) {
                     clearInterval(pointsFunc);
 
-                    data.getReachedLevel()
+                    data.getReachedLevel() //puzzle.level
                         .then(currentLevel => {
                             data.saveScore(points, currentLevel);
                             const reachedLevel = currentLevel + 1;

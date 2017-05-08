@@ -1,4 +1,4 @@
-<div class="container" oncontextmenu="return false;">
+<div id="puzzle-site" class="container" oncontextmenu="return false;">
     <div id="puzzle">
         <div class="row">
             <div id='power'>
@@ -17,8 +17,9 @@
         {{/each}}
     </div>
     <div id="scores">
-        <a id="quit-game" class="btn btn-logout" href="#/map"><span class="glyphicon glyphicon-log-out"></span>Quit Game</a>
+        <a id="quit-game" class="btn btn-logout" href="#/map"><button class="btn btn-md btn-warning btn-block" type="submit">Quit Game</button> </a>
         <table class="table">
+            <h3>High Scores</h3>
             <thead>
                 <tr>
                     <th>Username</th>
