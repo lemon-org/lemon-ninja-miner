@@ -7,6 +7,8 @@ let router = new Navigo(null, true);
 
 router
     .on({
+
+        'logout': () => userController.logout(),
         '': () => {
             if (!data.isLogged()) {
                 userController.get();
