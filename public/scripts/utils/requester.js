@@ -35,10 +35,6 @@ class Requester {
     put(url, options) {
         return this.send('PUT', url, options);
     }
-
-    // function save(url, options) {
-    //   return send('POST', url, options);
-    // }
 }
 
 const requester = new Requester();
