@@ -131,7 +131,7 @@ function generateMines(fieldSize, puzzleDifficultness) {
         col = Math.floor((Math.random() * fieldSize - 1) + 1);
 
         let mine = { row: row, col: col };
-        while (mines.findIndex(m => m.row === mine.row & m.col === mine.col) !== -1) {
+        while (mines.findIndex(m => m.row === mine.row && m.col === mine.col) !== -1) {
             mine.row = Math.floor((Math.random() * fieldSize - 1) + 1);
             mine.col = Math.floor((Math.random() * fieldSize - 1) + 1);
         }
