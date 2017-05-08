@@ -4,15 +4,15 @@ import { puzzles } from 'puzzle';
 const LOCAL_STORAGE_USERNAME_KEY = 'signed-in-user-username',
     LOCAL_STORAGE_AUTHKEY_KEY = 'signed-in-user-auth-key';
 
-export function getPuzzle(id) {
+export function getPuzzle(level) {
 
-    return requester.get('api/puzzles' + id)
+    return requester.get('api/puzzles' + level)
         .then(function (res) {
             const puzzle = res.result;
             return puzzle;
         });
 
-    // return puzzles[id];
+    //  return puzzles[level];
 }
 
 export function getPuzzles() {
@@ -37,7 +37,7 @@ export function getReachedLevel() {
             const reachedLevel = res.result;
             return reachedLevel;
         });
-    //  return Promise.resolve(2);
+    // return Promise.resolve(2);
 }
 
 export function updateReachedLevel(reachedLevel) {
@@ -52,10 +52,10 @@ export function updateReachedLevel(reachedLevel) {
             const reachedLevel = res.result;
             return reachedLevel;
         });
-    //  return reachedLevel;
+    // return reachedLevel;
 }
 
-export function saveScore(points, id) {
+export function saveScore(points, level) {
     const username = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
     const score = {
         username,
@@ -70,7 +70,7 @@ export function saveScore(points, id) {
         }
     };
 
-    return requester.post('api/puzzles' + id, options)
+    return requester.post('api/puzzles' + level, options)
         .then(function (resp) {
             return resp.result;
         });

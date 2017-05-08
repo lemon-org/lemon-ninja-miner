@@ -18,9 +18,10 @@ router
             }
         },
         'map': () => mapController.get(),
-        'puzzle/:id': (params) => puzzleController.get(params),
+        'puzzle/:level': (params) => puzzleController.get(params),
         'login': () => userController.get(),
     })
     .resolve();
 
 export { router };
+

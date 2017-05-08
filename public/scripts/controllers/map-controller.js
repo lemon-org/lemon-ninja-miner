@@ -17,14 +17,15 @@ export function get() {
                 puzzles[i].isLocked = false;
             }
             puzzles[reachedLevel].isCurrent = true;
+           
             $root.html(template(puzzles));
             return Promise.resolve(puzzles);
         })
         .then(puzzles => {
             $('.level').on('click', function () {
-                const id = $(this).attr('id');
+                const level = $(this).attr('id');
                 if (!$(this).hasClass('disabled')) {
-                    router.navigate(`puzzle/${id}`);
+                    router.navigate(`puzzle/${level}`);
                 }
             });
             $('.btn-logout').on('click', function () {
