@@ -4,7 +4,7 @@ const express = require('express'),
     session = require('express-session'),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
-    data = require('./temp-db');
+    data = require('./data/index')();
 const app = express();
 
 //session setup
@@ -19,7 +19,7 @@ app.use(express.static('./node_modules'))
 //passport strategy setup
 // @ts-ignore
 const localStrategy = new LocalStrategy((username, password, done) => {
-    data.findByName(username)
+    data.findUserByName(username)
         .then(user => {
             if (user) {
                 if (user.password === password) {
@@ -37,13 +37,13 @@ passport.use(localStrategy);
 
 passport.serializeUser((user, done) => {
     if (user) {
-        return done(null, user.id);
+        return done(null, user._id);
     }
     done(null, false);
 })
 
 passport.deserializeUser((id, done) => {
-    data.findById(id)
+    data.findUserById(id)
         .then(user => {
             if (user) {
                 return done(null, user);
@@ -64,12 +64,24 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 });
 
 router.post('/register', (req, res) => {
-    data.saveUser(req.body)
+    let user = {
+        username: req.body.username,
+        password: req.body.password,
+        eMail: req.body.email
+    }
+
+    data.createUser(user)
         .then(dbUser => {
-            res.json({ siccess: true, dbUser });
+            res.json({ success: true, dbUser });
         })
         .catch(err => {
-            res.json({success: false, err})
+            let msg;
+
+            if(err.code === 11000){
+                msg = 'username allready exist';
+            }
+            
+            res.json({success: false, err: msg})
         })
 })
 

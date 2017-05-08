@@ -32,6 +32,7 @@ class UserController {
                         .then((user) => {
                             //         notifier.success(`${user.username} successfully registered!`);
                             //         _toggleCLassWhenLoggedIn();
+                            console.log(user)
                             window.location = '#/map';
                         });
                     //      .catch((err) => {

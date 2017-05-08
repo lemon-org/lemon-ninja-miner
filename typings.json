@@ -1,6 +1,7 @@
 {
   "globalDependencies": {
     "express-session": "registry:dt/express-session#0.0.0+20161119044246",
+    "mongoose": "registry:dt/mongoose#4.7.0+20170322192047",
     "passport": "registry:dt/passport#0.3.0+20170207191958",
     "systemjs": "registry:dt/systemjs#0.20.0+20170310232558"
   }
