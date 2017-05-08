@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data tests</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./mocha/mocha.css" />
+
+    <script src="./systemjs/dist/system.js"></script>
+    <script src="./mocha/mocha.js"></script>
+    <script src="./chai/chai.js"></script>
+    <script src="./sinon/pkg/sinon.js"></script>
+    <script src="./sinon-chai/lib/sinon-chai.js"></script>
+    <script src="./bower_components/crypto-js/crypto-js.js"></script> 
+    <script src="./system.config.js"></script>
+
+</head>
+
+<body>
+    <div id="mocha"></div>
+
+    <script>
+        System.import('data-tests');
+    </script>
+
+   <!-- Unit tests -->
+   <script>
+        mocha.setup('bdd');
+        const { expect } = chai;
+   </script>
+
+   <script>
+        mocha.run();
+   </script>
+
+</body>
+
+</html>

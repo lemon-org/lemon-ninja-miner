@@ -3,59 +3,30 @@
 
 <head>
     <title></title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="css/style.css" rel="stylesheet">
     <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./bower_components/toastr/toastr.css">
+
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
-    <div id="root">
-        <!--  <h1 id="warning">
-            AWASIME SPA APP
-            <br> under construction
-        </h1>-->
-    </div>
-    <script src="./systemjs/dist/system.js"></script>
     <script src="./bower_components/toastr/toastr.js"></script>
     <script src="./bower_components/crypto-js/crypto-js.js"></script>
     <script src="./bower_components/handlebars/handlebars.js"></script>
     <script src="./navigo/lib/navigo.js"></script>
+    <script src="./systemjs/dist/system.js"></script>
+    <script src="./system.config.js"></script> 
+</head>
+
+<body>
+    <div id="root"></div>
 
     <script>
-        SystemJS.config({
-            'transpiler': 'plugin-babel',
-            'map': {
-                //system js files
-                'plugin-babel': './systemjs-plugin-babel/plugin-babel.js',
-                'systemjs-babel-build': './systemjs-plugin-babel/systemjs-babel-browser.js',
-
-                //app files
-                'main': './scripts/main.js',
-                'template-loader': './scripts/utils/template-loader.js',
-                'puzzle': './scripts/models/puzzle-model.js',
-                'player': './scripts/models/player-model.js',
-                'requester': './scripts/utils/requester.js',
-                'data': './scripts/utils/data.js',
-                'puzzle-controller': './scripts/controllers/puzzle-controller.js',
-                'map-controller': './scripts/controllers/map-controller.js',
-                'user-controller': './scripts/controllers/user-controller.js',
-                'validator': './scripts/utils/validator.js',
-
-                //lib files
-
-                'toastr': './toastr/toastr.js'
-                // 'navigo':'../node_modules/navigo/lib/navigo.js',
-
-            }
-        });
         System.import('main');
     </script>
-
 </body>
 
 </html>
