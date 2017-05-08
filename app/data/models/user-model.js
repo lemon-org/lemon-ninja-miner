@@ -13,6 +13,10 @@ let schema = new mongoose.Schema({
     password:{
         type: String,
         required: true
+    },
+    reachedLevel: {
+        type: Number,
+        required: true
     }
 });
 

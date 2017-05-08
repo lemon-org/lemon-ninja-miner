@@ -6,7 +6,7 @@ const LOCAL_STORAGE_USERNAME_KEY = 'signed-in-user-username',
 
 export function getPuzzle(id) {
 
-    return requester.get('api/puzzles' + id)
+    return requester.get('api/puzzles/' + id)
         .then(function (res) {
             const puzzle = res.result;
             return puzzle;
@@ -19,7 +19,7 @@ export function getPuzzles() {
 
     return requester.get('api/puzzles')
         .then(function (res) {
-            const puzzles = res.result;
+            const puzzles = res.puzzles;
             return puzzles;
         });
 
@@ -27,33 +27,16 @@ export function getPuzzles() {
 }
 
 export function getReachedLevel() {
-    const options = {
-        headers: {
-            'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
-        }
-    };
-    return requester.get('api/users/reachedLevel', options)
+    
+    return requester.get('api/users/reachedLevel')
         .then(function (res) {
-            const reachedLevel = res.result;
+            const reachedLevel = res.reachedLevel;
             return reachedLevel;
         });
     //  return Promise.resolve(2);
 }
 
-export function updateReachedLevel(reachedLevel) {
-    const options = {
-        data: { reachedLevel: reachedLevel },
-        headers: {
-            'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
-        }
-    };
-    return requester.put('api/users', options)
-        .then(function (res) {
-            const reachedLevel = res.result;
-            return reachedLevel;
-        });
-    //  return reachedLevel;
-}
+
 
 export function saveScore(points, id) {
     const username = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
@@ -79,7 +62,7 @@ export function saveScore(points, id) {
 export function registerUser(username, passHash, email) {
     const body = {
         username,
-        passHash,
+        password: passHash,
         email,
         reachedLevel: 1
     };
@@ -87,9 +70,9 @@ export function registerUser(username, passHash, email) {
         data: body
     })
         .then(function (res) {
-            const user = res.result;
+            const user = res.dbUser;
             localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
-            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user.authKey);
+            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user._id);
             return user;
         });
 }
@@ -103,9 +86,9 @@ export function login(username, passHash) {
         data: body
     })
         .then(function (res) {
-            const user = res.result;
+            const user = res.user;
             localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
-            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user.authKey);
+            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user._id);
             return user;
         });
 }
