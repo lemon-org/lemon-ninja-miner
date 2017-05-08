@@ -19,7 +19,7 @@ export function getPuzzles() {
 
     return requester.get('api/puzzles')
         .then(function (res) {
-            const puzzles = res.puzzles;
+            const puzzles = res.result;
             return puzzles;
         });
 
@@ -88,7 +88,7 @@ export function login(username, passHash) {
         .then(function (res) {
             const user = res.user;
             localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
-            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user._id);
+            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user.authKey);
             return user;
         });
 }
