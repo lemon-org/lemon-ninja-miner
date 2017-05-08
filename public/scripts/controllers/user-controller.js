@@ -79,7 +79,7 @@ export function register() {
         $confirmPassword.val('');
     }
 
-    if (validator.validateEmail(email)) {
+    if (!validator.validateEmail(email)) {
         toastr.error('E-mail must be valid e-mail address!');
         $password.val('');
         $confirmPassword.val('');
