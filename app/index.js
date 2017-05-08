@@ -85,7 +85,7 @@ router.post('/register', (req, res) => {
         })
 })
 
-app.use(router);
+app.use('/api/users', router);
 
 app.listen(process.env.PORT || 3333, function () {
     console.log(`Server is running at ${process.env.PORT || 3333}`);

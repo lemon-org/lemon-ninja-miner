@@ -83,7 +83,7 @@ export function registerUser(username, passHash, email) {
         email,
         reachedLevel: 1
     };
-    return requester.post('api/users', {
+    return requester.post('api/users/register', {
         data: body
     })
         .then(function (res) {
@@ -94,12 +94,12 @@ export function registerUser(username, passHash, email) {
         });
 }
 
-export function login(user, passHash) {
+export function login(username, passHash) {
     const body = {
         username,
-        passHash
+        password: passHash
     };
-    return requester.put('/api/users/auth', {
+    return requester.put('api/users/login', {
         data: body
     })
         .then(function (res) {

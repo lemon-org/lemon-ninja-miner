@@ -1,5 +1,5 @@
 import { templateLoader } from 'template-loader';
-import * as data from 'data';
+import * as data  from 'data';
 import { validator } from 'validator';
 
 const $root = $('#root');
@@ -87,7 +87,7 @@ export function register() {
     }
 
     if (password !== confirmPassword) {
-        toastr.error('Password doesn\'t match'); 
+        toastr.error('Password doesn\'t match');
         $password.val('');
         $confirmPassword.val('');
     }
@@ -105,8 +105,10 @@ export function register() {
 };
 
 export function login() {
-    const username = $('#username').val(),
-        password = $('#password').val(),
+    const $username = $('#username'),
+    username = $username.val(),
+        $password = $('#password'),
+        password = $password.val(),
         passHash = CryptoJS.SHA1(username + password).toString();
 
     if (!validator.validateUserName(username)) {
