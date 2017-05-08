@@ -29,7 +29,7 @@ class Cell {
 
 class Puzzle {
     constructor(points, difficultness, repeatedTimes) {
-        this.id = 0;
+        this.level = 0;
         this._points = points;
         this._difficultness = difficultness;
         this._repeatedTimes = repeatedTimes;
@@ -204,7 +204,7 @@ const puzzles = [];
 var puzzle1 = createPuzzle(60, 1, 1);
 puzzle1.isLocked = false;
 puzzle1.isCurrent = true;
-puzzle1.id = 1;
+puzzle1.level = 1;
 puzzles.push(puzzle1);
 
 for (let i = 1; i < 20; i += 1) {
@@ -212,7 +212,7 @@ for (let i = 1; i < 20; i += 1) {
     while (newPuzzle.size < 5) {
         newPuzzle = generateNextPuzzle(newPuzzle);
     }
-    newPuzzle.id = i + 1;
+    newPuzzle.level = i + 1;
     puzzles.push(newPuzzle);
 
 }
