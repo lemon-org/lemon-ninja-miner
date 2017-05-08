@@ -34,8 +34,8 @@ export function get() {
 }
 
 export function register() {
-    let $username = $('#username'),
-        $password = $('#password'),
+    let $username = $('#username-reg'),
+        $password = $('#password-reg'),
         $confirmPassword = $('#confirm-password'),
         $email = $('#email'),
 
@@ -105,9 +105,9 @@ export function register() {
 };
 
 export function login() {
-    const $username = $('#username'),
+    const $username = $('#username-log'),
     username = $username.val(),
-        $password = $('#password'),
+        $password = $('#password-log'),
         password = $password.val(),
         passHash = CryptoJS.SHA1(username + password).toString();
 

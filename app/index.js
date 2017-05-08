@@ -59,7 +59,7 @@ app.use(passport.session());
 //routes middleware
 let router = express.Router();
 
-router.post('/login', passport.authenticate('local'), (req, res, next) => {
+router.put('/login', passport.authenticate('local'), (req, res, next) => {
     res.status(200).json({ succes: true, user: req.user });
 });
 
@@ -67,7 +67,8 @@ router.post('/register', (req, res) => {
     let user = {
         username: req.body.username,
         password: req.body.password,
-        eMail: req.body.email
+        eMail: req.body.email,
+        reachedLevel: req.body.reachedLevel
     }
 
     data.createUser(user)
@@ -85,7 +86,43 @@ router.post('/register', (req, res) => {
         })
 })
 
+router.get('/reachedLevel', (req,res) => {
+    if(req.user){
+    let reachedLevel = req.user._doc.reachedLevel;
+
+    res.json({reachedLevel});
+    } else {
+        res.status(401).json({success: false});
+    }
+});
+
 app.use('/api/users', router);
+
+let puzzleRouter = express.Router();
+
+puzzleRouter.get('/:level', (req,res) => {
+    let level = req.params.level;
+
+    data.getPuzzleById(level)
+        .then(puzzle => {
+            if(puzzle){
+                res.json({puzzle});
+            }
+        })
+        .catch(err => res.json({err}));
+})
+
+puzzleRouter.get('/', (req, res) => {
+    data.getAllPuzzles()
+        .then(puzzles => {
+            if(puzzles){
+                res.json({puzzles});
+            }
+        })
+        .catch(err => res.json({err}));
+})
+
+app.use('/api/puzzles', puzzleRouter);
 
 app.listen(process.env.PORT || 3333, function () {
     console.log(`Server is running at ${process.env.PORT || 3333}`);
