@@ -1,7 +1,7 @@
 import { templateLoader } from 'template-loader';
 import * as data from 'data';
-
 import { router } from 'main';
+import { logout } from 'user-controller';
 
 const $root = $('#root');
 
@@ -12,8 +12,8 @@ export function get() {
         data.getReachedLevel()
     ])
         .then(([template, puzzles, reachedLevel]) => {
-            reachedLevel = reachedLevel || 0;
-            for (let i = 0; i <= reachedLevel; i += 1) {
+            //    reachedLevel = reachedLevel || 1;
+            for (let i = 0; i < reachedLevel; i += 1) {
                 puzzles[i].isLocked = false;
             }
             puzzles[reachedLevel].isCurrent = true;
@@ -26,6 +26,9 @@ export function get() {
                 if (!$(this).hasClass('disabled')) {
                     router.navigate(`puzzle/${id}`);
                 }
+            });
+            $('.btn-logout').on('click', function () {
+                logout();
             });
         });
 }

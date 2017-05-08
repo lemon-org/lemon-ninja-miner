@@ -30,7 +30,6 @@ export function get() {
                     register();
                 });
             });
-            //   return Promise.resolve();
         });
 }
 
@@ -88,7 +87,7 @@ export function register() {
     }
 
     if (password !== confirmPassword) {
-        toastr.error('Password doesn\'t match'); // drug tekst
+        toastr.error('Password doesn\'t match'); 
         $password.val('');
         $confirmPassword.val('');
     }
@@ -110,7 +109,7 @@ export function login() {
         password = $('#password').val(),
         passHash = CryptoJS.SHA1(username + password).toString();
 
-    if (!validator.validateUserName(username)) {//ima validacii na bootstrap no dali mogat da se polzvat
+    if (!validator.validateUserName(username)) {
         $username.val('');
         $password.val('');
     }

@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container" oncontextmenu="return false;">
+    <div id="puzzle">
         <div class="row">
             <div id='power'>
                 <span id="total-points">{{points}}</span>/<span id="current-points">{{points}}</span></div>
@@ -6,18 +7,36 @@
             <div class="initialize-col">{{this}}</div>
             {{/each}}
         </div>
-
         {{#each field}}
         <div class="row">
-             <div class="initialize-row">{{lookup ../colMinesCount @index}}</div>
+            <div class="initialize-row">{{lookup ../colMinesCount @index}}</div>
             {{#each this}}
             <div class='cell close'></div>
             {{/each}}
         </div>
         {{/each}}
-
     </div>
-    <a class="btn btn-logout" href="#/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+    <div id="scores">
+        <a id="quit-game" class="btn btn-logout" href="#/map"><span class="glyphicon glyphicon-log-out"></span>Quit Game</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each scores}}
+                <tr>
+                    <td>{{username}}</td>
+                    <td>{{points}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 <!--buton for high score or just to show high score
