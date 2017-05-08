@@ -19,7 +19,7 @@ export function getPuzzles() {
 
     return requester.get('api/puzzles')
         .then(function (res) {
-            const puzzles = res.result;
+            const puzzles = res.puzzles;
             return puzzles;
         });
 
