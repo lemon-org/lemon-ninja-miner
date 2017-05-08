@@ -95,6 +95,10 @@ body {
 	height: 50px;
 }
 
+#puzzle, #scores{
+	display: inline-block;
+}
+
 .cell{
 	margin: 1px;
     width: 50px;
@@ -129,10 +133,6 @@ body {
 	margin: 1px;
 		width:60px;
 			font-size: 20px;
-}
-
-.mark{
-    border: 2px solid blue;
 }
 
 .mine{

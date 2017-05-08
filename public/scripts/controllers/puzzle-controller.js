@@ -90,7 +90,17 @@ export function get(params) {
 
                 if (counter === emptyCellsCount) {
                     clearInterval(pointsFunc);
-                    endGame("Great! You have solved The Lemon-Miner puzzle!", '../../css/images//won-game.jpg');
+
+                    data.getReachedLevel()
+                        .then(currentLevel => {
+                            data.saveScore(points, currentLevel);
+                            const reachedLevel = currentLevel + 1;
+                            data.updateReachedLevel(reachedLevel);
+                        });
+
+                    endGame("Great! You have solved The Lemon-Miner puzzle!",
+                        '../../css/images//won-game.jpg',
+                        $original);
                 }
             });
 
@@ -98,7 +108,6 @@ export function get(params) {
                 if ($(this).hasClass('close')) {
                     $(this).toggleClass('mark');
                 }
-
             });
         });
 }

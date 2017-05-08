@@ -12,7 +12,7 @@ export function getPuzzle(id) {
             return puzzle;
         });
 
-    //  return puzzles[id];
+    // return puzzles[id];
 }
 
 export function getPuzzles() {
@@ -37,7 +37,7 @@ export function getReachedLevel() {
             const reachedLevel = res.result;
             return reachedLevel;
         });
-    //   return 2;
+    //  return Promise.resolve(2);
 }
 
 export function updateReachedLevel(reachedLevel) {
@@ -51,6 +51,28 @@ export function updateReachedLevel(reachedLevel) {
         .then(function (res) {
             const reachedLevel = res.result;
             return reachedLevel;
+        });
+    //  return reachedLevel;
+}
+
+export function saveScore(points, id) {
+    const username = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
+    const score = {
+        username,
+        points
+    }
+    const options = {
+        data: {
+            score
+        },
+        headers: {
+            // current puzzles/id.scores -> push in scores
+        }
+    };
+
+    return requester.post('api/puzzles' + id, options)
+        .then(function (resp) {
+            return resp.result;
         });
 }
 

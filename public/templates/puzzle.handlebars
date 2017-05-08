@@ -1,21 +1,40 @@
 <div class="container" oncontextmenu="return false;">
-    <div class="row">
-        <div id='power'>
-            <span id="total-points">{{points}}</span>/<span id="current-points">{{points}}</span></div>
-        {{#each rowMinesCount}}
-        <div class="initialize-col">{{this}}</div>
+    <div id="puzzle">
+        <div class="row">
+            <div id='power'>
+                <span id="total-points">{{points}}</span>/<span id="current-points">{{points}}</span></div>
+            {{#each rowMinesCount}}
+            <div class="initialize-col">{{this}}</div>
+            {{/each}}
+        </div>
+        {{#each field}}
+        <div class="row">
+            <div class="initialize-row">{{lookup ../colMinesCount @index}}</div>
+            {{#each this}}
+            <div class='cell close'></div>
+            {{/each}}
+        </div>
         {{/each}}
     </div>
-
-    {{#each field}}
-    <div class="row">
-        <div class="initialize-row">{{lookup ../colMinesCount @index}}</div>
-        {{#each this}}
-        <div class='cell close'></div>
-        {{/each}}
+    <div id="scores">
+        <a id="quit-game" class="btn btn-logout" href="#/map"><span class="glyphicon glyphicon-log-out"></span>Quit Game</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each scores}}
+                <tr>
+                    <td>{{username}}</td>
+                    <td>{{points}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>
-    {{/each}}
- <a id="quit-game" class="btn btn-logout" href="#/map"><span class="glyphicon glyphicon-log-out"></span>Quit Game</a>
 </div>
 
 
