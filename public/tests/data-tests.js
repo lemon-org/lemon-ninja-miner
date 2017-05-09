@@ -278,6 +278,161 @@ describe('Data layer tests', () => {
 
 
 
+    describe('GetReachedLevel tests', () => {
+        let requesterGetStub;
+
+        beforeEach (() => {
+            requesterGetStub = sinon.stub(requester, 'get')
+                .returns(Promise.resolve({reachedLevel: 'ARRAY'}));
+        });
+        afterEach(() => {
+            requesterGetStub.restore();
+        })
+
+        it('Expect GetReachedLevel to make GET request ', (done) => {
+            data.getReachedLevel()
+                .then(() => {
+                     expect(requesterGetStub).to.be.calledOnce;
+                })
+                .then(done, done);
+        });
+
+        it('Expect GetReachedLevel to make GET request to api/users/reachedLevel ', (done) => {
+            data.getReachedLevel()
+                .then(() => {
+                     expect(requesterGetStub).to.be.calledWith('api/users/reachedLevel');
+                })
+                .then(done, done);
+        });
+
+        it('Expect GetReachedLevel to return reachedLevel ', (done) => {
+            data.getReachedLevel()
+                .then((puzzle) => {
+                     expect(puzzle).to.equal('ARRAY');
+                })
+                .then(done, done);
+        });
+
+        it('Expect GetReachedLevel to return a Promise ', () => {
+            const promise =  data.getReachedLevel()
+          
+            expect(promise).to.be.a.instanceof(Promise);
+        });
+    });
+
+
+
+    describe('UpdateReachedLevel tests', () => {
+        let requesterPutStub;
+        let reachedLevel = 5;
+
+        beforeEach (() => {
+            requesterPutStub = sinon.stub(requester, 'put')
+                .returns(Promise.resolve({reachedLevel: 'ARRAY'}));
+        });
+        afterEach(() => {
+            requesterPutStub.restore();
+        })
+
+        it('Expect updateReachedLevel to make PUT request ', (done) => {
+            data.updateReachedLevel(reachedLevel)
+                .then(() => {
+                     expect(requesterPutStub).to.be.calledOnce;
+                })
+                .then(done, done);
+        });
+
+        it('Expect updateReachedLevel to make PUT request to api/users/reachedLevel ', (done) => {
+            data.updateReachedLevel(reachedLevel)
+                .then(() => {
+                     expect(requesterPutStub).to.be.calledWith('api/users/reachedLevel');
+                })
+                .then(done, done);
+        });
+
+        it('Expect updateReachedLevel to make PUT request to api/users/reachedLevel with options ', (done) => {
+            localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, 'pesho');
+            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, 'SOME_KEY');
+
+            const options = {
+                data: { reachedLevel: reachedLevel },
+                    headers: {
+                        ['x-auth-key']: 'SOME_KEY'
+                    }
+                };
+
+            data.updateReachedLevel(reachedLevel)
+                .then(() => {
+                    expect(requesterPutStub.args[0][1]).to.be.deep.equal(options);
+                })
+                .then(done, done);
+        });
+
+        it('Expect updateReachedLevel to return a Promise ', () => {
+            const promise =  data.updateReachedLevel(reachedLevel)
+          
+            expect(promise).to.be.a.instanceof(Promise);
+        });
+    });
+
+
+    describe('SaveScore tests', () => {
+        let requesterPutStub;
+        let points = 50;
+        let level = 3;
+
+        beforeEach (() => {
+            requesterPutStub = sinon.stub(requester, 'put')
+                .returns(Promise.resolve({puzzle: 'ARRAY'}));
+        });
+        afterEach(() => {
+            requesterPutStub.restore();
+        })
+
+        it('Expect saveScore to make PUT request ', (done) => {
+            data.saveScore(points, level)
+                .then(() => {
+                     expect(requesterPutStub).to.be.calledOnce;
+                })
+                .then(done, done);
+        });
+
+        it('Expect saveScore to make PUT request to api/puzzles/ + level ', (done) => {
+            data.saveScore(points, level)
+                .then(() => {
+                     expect(requesterPutStub).to.be.calledWith('api/puzzles/' + level);
+                })
+                .then(done, done);
+        });
+
+        it('Expect saveScore to make PUT request to api/puzzles/ + level with options ', (done) => {
+            localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, 'pesho');
+
+            const score = {
+                username: 'pesho',
+                points: points
+            }
+            const options = {
+                data: {
+                    score
+                },
+                headers: {
+                }
+            };
+
+            data.saveScore(points, level)
+                .then(() => {
+                    expect(requesterPutStub.args[0][1]).to.be.deep.equal(options);
+                })
+                .then(done, done);
+        });
+
+        it('Expect SaveScore to return a Promise ', () => {
+            const promise =  data.saveScore(points, level)
+          
+            expect(promise).to.be.a.instanceof(Promise);
+        });
+    });
 });
 
 mocha.run();
