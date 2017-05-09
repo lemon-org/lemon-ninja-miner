@@ -250,7 +250,12 @@ module.exports = (config) => {
 
     let userModel = require('./models/user-model'),
         puzzleModel = require('./models/puzzle-model');
-    populatePuzzles(puzzleModel);
+
+        puzzleModel.count((err, count) => {
+            if(count <= 0){
+                populatePuzzles(puzzleModel);
+            }
+        })
     return {
         findUserById(id) {
             return new Promise((resolve, reject) => {
