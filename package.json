@@ -6,7 +6,7 @@
   "scripts": {
     "restart": "./node_modules/.bin/nodemon ./app/index.js",
     "start": "node app/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "start http://localhost:3333/tests.html",
     "postinstall": "bower install"
   },
   "repository": {

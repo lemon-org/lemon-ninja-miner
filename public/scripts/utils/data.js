@@ -54,6 +54,7 @@ export function updateReachedLevel(reachedLevel) {
         });
     // return reachedLevel;
 }
+
 export function saveScore(points, level) {
     const username = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
     const score = {
