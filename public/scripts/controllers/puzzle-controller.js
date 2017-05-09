@@ -117,7 +117,8 @@ export function get(params) {
                 }
             });
 
-            $('#quit-game').on('click', function () {
+            $('#quit-game').on('click', function () {    
+                          
                 clearInterval(pointsFunc);
             })
         });
