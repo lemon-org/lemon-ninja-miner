@@ -69,8 +69,8 @@ export function get(params) {
             }
 
             $('.cell').on('click', function () {
-                  const minesCount = (puzzle.size * puzzle.size / 2 | 0) + 1 - puzzle.difficultness,
-emptyCellsCount = puzzle.size * puzzle.size - minesCount;
+                const minesCount = (puzzle.size * puzzle.size / 2 | 0) + 1 - puzzle.difficultness,
+                    emptyCellsCount = puzzle.size * puzzle.size - minesCount;
                 const col = $(this).parent().children().index($(this));
                 const row = $(this).parent().parent().children().index($(this).parent());
                 $(this).removeClass('close');
@@ -116,5 +116,9 @@ emptyCellsCount = puzzle.size * puzzle.size - minesCount;
                     $(this).toggleClass('mark');
                 }
             });
+
+            $('#quit-game').on('click', function () {
+                clearInterval(pointsFunc);
+            })
         });
 }
