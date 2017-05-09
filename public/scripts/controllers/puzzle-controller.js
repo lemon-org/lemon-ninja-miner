@@ -32,7 +32,7 @@ function endGame(message, img, $original) {
             $('.btn').on('click', function () {
                 $('.container').replaceWith($original.clone());
                 $popupDiv.hide();
-                 $('iframe').show();
+                $('iframe').show();
                 router.navigate('map');
             });
         });
@@ -92,7 +92,7 @@ export function get(params) {
 
                 if (counter === emptyCellsCount) {
                     clearInterval(pointsFunc);
-
+                    let points = $('#current-points').html();
                     data.getReachedLevel() //puzzle.level
                         .then(currentLevel => {
                             data.saveScore(points, currentLevel);
