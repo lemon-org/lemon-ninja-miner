@@ -286,6 +286,17 @@ module.exports = (config) => {
                 })
             })
         },
+        updateUser(reachedlevel, userId){
+            return new Promise((resolve, reject) => {
+                userModel.update({_id: userId}, {$set: {reachedLevel: reachedlevel}}, (err, raw) => {
+                    if(err) {
+                        reject(err)
+                    } else {
+                        resolve(raw);
+                    }
+                })
+            })
+        },
         getPuzzleById(id) {
             return new Promise((resolve, reject) => {
                 puzzleModel.findById(id, (err, puzzle) => {
@@ -320,6 +331,17 @@ module.exports = (config) => {
                         resolve(puzzles.sort((a,b)=> {
                             return a._doc.level - b._doc.level;
                         }));
+                    }
+                })
+            })
+        },
+        updatePuzzle(level, username, score){
+            return new Promise((resolve, reject) => {
+                puzzleModel.findOneAndUpdate({level: level}, {$push: { scores: {username, score}}}, (err, res) => {
+                    if(err){
+                        reject(err);
+                    }else{
+                        resolve(res);
                     }
                 })
             })

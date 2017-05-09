@@ -94,7 +94,8 @@ export function get(params) {
                 if (counter === emptyCellsCount) {
                     clearInterval(pointsFunc);
 
-                    data.getReachedLevel() 
+                    let points = $('#current-points').html();
+                    data.getReachedLevel() //puzzle.level
                         .then(currentLevel => {
                             data.saveScore(points, puzzle.level);
                             if (currentLevel == puzzle.level) {

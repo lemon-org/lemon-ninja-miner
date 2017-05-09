@@ -47,9 +47,9 @@ export function updateReachedLevel(reachedLevel) {
             'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
         }
     };
-    return requester.put('api/users', options)
+    return requester.put('api/users/reachedLevel', options)
         .then(function (res) {
-            const reachedLevel = res.result;
+            const reachedLevel = res.rechedLevel;
             return reachedLevel;
         });
     // return reachedLevel;
@@ -70,9 +70,9 @@ export function saveScore(points, level) {
     };
 
 
-    return requester.post('api/puzzles' + level, options)
+    return requester.put('api/puzzles/' + level, options)
         .then(function (resp) {
-            return resp.result;
+            return resp.puzzle;
         });
 }
 
