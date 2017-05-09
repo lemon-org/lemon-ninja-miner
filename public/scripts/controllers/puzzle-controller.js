@@ -2,6 +2,9 @@ import { templateLoader } from 'template-loader';
 import * as data from 'data';
 import { router } from 'main';
 
+//reaching next level
+// adding scores
+
 const $root = $('#root'),
     $popupDiv = $('<div/>')
         .attr('id', 'endgame-message')
@@ -32,7 +35,7 @@ function endGame(message, img, $original) {
             $('.btn').on('click', function () {
                 $('.container').replaceWith($original.clone());
                 $popupDiv.hide();
-                 $('iframe').show();
+                $('iframe').show();
                 router.navigate('map');
             });
         });
@@ -95,9 +98,11 @@ export function get(params) {
 
                     data.getReachedLevel() //puzzle.level
                         .then(currentLevel => {
-                            data.saveScore(points, currentLevel);
-                            const reachedLevel = currentLevel + 1;
-                            data.updateReachedLevel(reachedLevel);
+                            data.saveScore(points, puzzle.level);
+                            if (currentLevel == puzzle.level) {
+                                const reachedLevel = currentLevel + 1;
+                                data.updateReachedLevel(reachedLevel);
+                            }
                         });
 
                     endGame("Great! You have solved The Lemon-Miner puzzle!",
