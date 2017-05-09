@@ -29,7 +29,7 @@ class Cell {
 
 class Puzzle {
     constructor(points, difficultness, repeatedTimes) {
-        this.id = 0;
+        this.level = 0;
         this._points = points;
         this._difficultness = difficultness;
         this._repeatedTimes = repeatedTimes;
@@ -131,7 +131,7 @@ function generateMines(fieldSize, puzzleDifficultness) {
         col = Math.floor((Math.random() * fieldSize - 1) + 1);
 
         let mine = { row: row, col: col };
-        while (mines.findIndex(m => m.row === mine.row & m.col === mine.col) !== -1) {
+        while (mines.findIndex(m => m.row === mine.row && m.col === mine.col) !== -1) {
             mine.row = Math.floor((Math.random() * fieldSize - 1) + 1);
             mine.col = Math.floor((Math.random() * fieldSize - 1) + 1);
         }
@@ -204,7 +204,7 @@ const puzzles = [];
 var puzzle1 = createPuzzle(60, 1, 1);
 puzzle1.isLocked = false;
 puzzle1.isCurrent = true;
-puzzle1.id = 1;
+puzzle1.level = 1;
 puzzles.push(puzzle1);
 
 for (let i = 1; i < 20; i += 1) {
@@ -212,7 +212,7 @@ for (let i = 1; i < 20; i += 1) {
     while (newPuzzle.size < 5) {
         newPuzzle = generateNextPuzzle(newPuzzle);
     }
-    newPuzzle.id = i + 1;
+    newPuzzle.level = i + 1;
     puzzles.push(newPuzzle);
 
 }

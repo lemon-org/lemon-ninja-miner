@@ -14,7 +14,7 @@ app.use(session({ secret: 'lemon ninja miner' }));
 
 //static middleware
 app.use(express.static('./public'));
-app.use(express.static('./node_modules'))
+app.use(express.static('./node_modules'));
 
 //passport strategy setup
 // @ts-ignore
@@ -26,7 +26,7 @@ const localStrategy = new LocalStrategy((username, password, done) => {
                     return done(null, user);
                 }
             }
-            
+
             done(null, false);
         })
         .catch(err => done(err, false));
@@ -78,48 +78,71 @@ router.post('/register', (req, res) => {
         .catch(err => {
             let msg;
 
-            if(err.code === 11000){
+            if (err.code === 11000) {
                 msg = 'username allready exist';
             }
-            
-            res.json({success: false, err: msg})
+
+            res.json({ success: false, err: msg })
         })
 })
 
-router.get('/reachedLevel', (req,res) => {
-    if(req.user){
-    let reachedLevel = req.user._doc.reachedLevel;
+router.get('/reachedLevel', (req, res) => {
+    if (req.user) {
+        let reachedLevel = req.user._doc.reachedLevel;
 
-    res.json({reachedLevel});
+        res.json({ reachedLevel });
     } else {
-        res.status(401).json({success: false});
+        res.status(401).json({ success: false });
     }
 });
 
+router.put('/reachedLevel', (req, res) => {
+    let reachedLevel = req.body.reachedLevel,
+        user = req.user;
+
+    if (user) {
+        data.updateUser(reachedLevel, user._doc._id)
+        .then(raw => {
+            res.json({reachedLevel});
+        })
+    }
+})
 app.use('/api/users', router);
 
 let puzzleRouter = express.Router();
 
-puzzleRouter.get('/:level', (req,res) => {
+puzzleRouter.get('/:level', (req, res) => {
     let level = req.params.level;
 
     data.getPuzzleByLevel(level)
         .then(puzzle => {
-            if(puzzle){
-                res.json({puzzle});
+            if (puzzle) {
+                res.json({ puzzle });
             }
         })
-        .catch(err => res.json({err}));
+        .catch(err => res.json({ err }));
+})
+
+puzzleRouter.put('/:level', (req,res) => {
+    let level = req.params.level,
+        score = req.body.score;
+
+        if(req.user){
+            data.updatePuzzle(level, score.username, score.points)
+                .then(data => {
+                    res.json({data});
+                })
+        }
 })
 
 puzzleRouter.get('/', (req, res) => {
     data.getAllPuzzles()
         .then(puzzles => {
-            if(puzzles){
-                res.json({puzzles});
+            if (puzzles) {
+                res.json({ puzzles });
             }
         })
-        .catch(err => res.json({err}));
+        .catch(err => res.json({ err }));
 })
 
 app.use('/api/puzzles', puzzleRouter);

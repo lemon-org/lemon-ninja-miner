@@ -1,5 +1,5 @@
 import { templateLoader } from 'template-loader';
-import * as data  from 'data';
+import * as data from 'data';
 import { validator } from 'validator';
 
 const $root = $('#root');
@@ -10,15 +10,19 @@ export function get() {
             $root.html(template);
         })
         .then(() => {
+            //fix this stupid thing
+            $('#btn-login').on('click', () => {
+                login();
+            });
+             $('#btn-register').on('click', () => { 
+                    register();
+                });
             $('#login-form-link').click(function (e) {
                 $("#login-form").delay(100).fadeIn(100);
                 $("#register-form").fadeOut(100);
                 $('#register-form-link').removeClass('active');
                 $(this).addClass('active');
                 e.preventDefault();
-                $('#btn-login').on('click', () => {//promise?
-                    login();
-                });
             });
             $('#register-form-link').click(function (e) {
                 $("#register-form").delay(100).fadeIn(100);
@@ -26,9 +30,6 @@ export function get() {
                 $('#login-form-link').removeClass('active');
                 $(this).addClass('active');
                 e.preventDefault();
-                $('#btn-register').on('click', () => { //promise??
-                    register();
-                });
             });
         });
 }
@@ -79,7 +80,7 @@ export function register() {
         $confirmPassword.val('');
     }
 
-    if (validator.validateEmail(email)) {
+    if (!validator.validateEmail(email)) {
         toastr.error('E-mail must be valid e-mail address!');
         $password.val('');
         $confirmPassword.val('');
@@ -105,8 +106,9 @@ export function register() {
 };
 
 export function login() {
+   
     const $username = $('#username-log'),
-    username = $username.val(),
+        username = $username.val(),
         $password = $('#password-log'),
         password = $password.val(),
         passHash = CryptoJS.SHA1(username + password).toString();
@@ -135,6 +137,6 @@ export function logout() {
     data.logoutUser()
         .then(() => {
             toastr.success(`User logged out!`);
-            location.href = '';
+            window.location = '';
         })
 }

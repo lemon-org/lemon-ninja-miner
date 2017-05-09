@@ -135,7 +135,7 @@ function populatePuzzles(puzzleModel) {
             col = Math.floor((Math.random() * fieldSize - 1) + 1);
 
             let mine = { row: row, col: col };
-            while (mines.findIndex(m => m.row === mine.row & m.col === mine.col) !== -1) {
+            while (mines.findIndex(m => m.row === mine.row && m.col === mine.col) !== -1) {
                 mine.row = Math.floor((Math.random() * fieldSize - 1) + 1);
                 mine.col = Math.floor((Math.random() * fieldSize - 1) + 1);
             }
@@ -215,7 +215,7 @@ function populatePuzzles(puzzleModel) {
         while (newPuzzle.size < 5) {
             newPuzzle = generateNextPuzzle(newPuzzle);
         }
-        //newPuzzle.level = i + 1;
+        newPuzzle.level = i + 1;
         puzzles.push(newPuzzle);
 
     }
@@ -227,7 +227,8 @@ function populatePuzzles(puzzleModel) {
                 return c.map(cell => {
                     return {
                         row: cell.row,
-                        col: cell.col
+                        col: cell.col,
+                        isMine: cell.isMine
                     }
                 })
             }),
@@ -290,6 +291,17 @@ module.exports = (config) => {
                 })
             })
         },
+        updateUser(reachedlevel, userId){
+            return new Promise((resolve, reject) => {
+                userModel.update({_id: userId}, {$set: {reachedLevel: reachedlevel}}, (err, raw) => {
+                    if(err) {
+                        reject(err)
+                    } else {
+                        resolve(raw);
+                    }
+                })
+            })
+        },
         getPuzzleById(id) {
             return new Promise((resolve, reject) => {
                 puzzleModel.findById(id, (err, puzzle) => {
@@ -301,14 +313,14 @@ module.exports = (config) => {
                 })
             })
         },
-        getPuzzleByLevel(level){
+        getPuzzleByLevel(level) {
             return new Promise((resolve, reject) => {
-                puzzleModel.findOne({level: level}, (err, puzzle) => {
-                    if(err){
+                puzzleModel.findOne({ level: level }, (err, puzzle) => {
+                    if (err) {
                         reject(err);
-                    }else {
-                        if(puzzle){
-                            puzzle.scores = puzzle.scores.sort((a , b)=> b.score - a.score).slice(0, 3);
+                    } else {
+                        if (puzzle) {
+                            puzzle.scores = puzzle.scores.sort((a, b) => b.score - a.score).slice(0, 3);
                             resolve(puzzle)
                         }
                     }
@@ -321,7 +333,20 @@ module.exports = (config) => {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(puzzles);
+                        resolve(puzzles.sort((a,b)=> {
+                            return a._doc.level - b._doc.level;
+                        }));
+                    }
+                })
+            })
+        },
+        updatePuzzle(level, username, score){
+            return new Promise((resolve, reject) => {
+                puzzleModel.findOneAndUpdate({level: level}, {$push: { scores: {username, score}}}, (err, res) => {
+                    if(err){
+                        reject(err);
+                    }else{
+                        resolve(res);
                     }
                 })
             })

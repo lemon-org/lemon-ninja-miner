@@ -7,7 +7,7 @@ let router = new Navigo(null, true);
 
 router
     .on({
-        
+
         'logout': () => userController.logout(),
         '': () => {
             if (!data.isLogged()) {
@@ -20,9 +20,10 @@ router
             }
         },
         'map': () => mapController.get(),
-        'puzzle/:id': (params) => puzzleController.get(params),
-        'login': () => userController.get()
+        'puzzle/:level': (params) => puzzleController.get(params),
+        'login': () => userController.get(),
     })
     .resolve();
 
 export { router };
+

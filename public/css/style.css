@@ -9,12 +9,24 @@ li,table,tr,td {
   padding: 0;
  
 }
-body {
-    padding-top: 30px;
+
+body {	
+	background-color: #75767A !important;
 }
 
-#root{
-	padding: 10px;
+#logo{
+	height: 100%;
+	border-radius: 30px;
+	position: absolute;
+	z-index: -1;
+}
+
+#root{		
+	padding: 80px;
+}
+
+footer{
+	padding: 40px;
 }
 
 .panel-login {
@@ -61,42 +73,51 @@ body {
 
 #map{	
 	list-style: none;
-	width: 250px;
+	width: 400px;
     display: flex;
-	flex-direction: column;               
+	background-color:white;
+	flex-direction: column;  
+	border-radius: 20px;
 }
 
 #map>li:nth-child(3n){
-	width: 50px;
+	width: 100px;
     align-self: flex-end;
 	margin: 10px;
 }
 
 #map>li:nth-child(3n+1){
-	width: 50px;
+	width: 100px;
     align-self: center;
 	margin: 10px;
 }
 
 #map>li:nth-child(3n+2){
-	width: 50px;
+	width: 100px;
     align-self: flex-start;
 	margin: 10px;
 }
 
 #map>li>div{
-	text-align: center;
-	width: 50px;
-	height: 60px;
+	text-align: center;	
+	width: 100px;
+	height: 120px;
 }
   
-.level{
-	width: 50px;
-	height: 50px;
+.level{	
+	width: 100px;
+	height: 100px;
 }
 
 #puzzle, #scores{
-	display: inline-block;
+	display: inline-block;	
+	padding-left: 30px;
+}
+
+#puzzle-site{
+	background-color: white;
+	border-radius: 20px;
+	max-width: 600px;
 }
 
 .cell{
@@ -131,8 +152,8 @@ body {
 
 #power{
 	margin: 1px;
-		width:60px;
-			font-size: 20px;
+	width:60px;
+	font-size: 20px;		
 }
 
 .mine{
@@ -180,9 +201,8 @@ body {
 	background-repeat: no-repeat;
 }
 
-.disabled{
+.stop-game{
+	position: absolute;
+	z-index: -1;
 	pointer-events: none;
-    opacity: 0.4;
 }
-
-

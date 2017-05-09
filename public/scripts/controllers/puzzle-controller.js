@@ -2,6 +2,7 @@ import { templateLoader } from 'template-loader';
 import * as data from 'data';
 import { router } from 'main';
 
+// fix empty cell property - level4
 const $root = $('#root'),
     $popupDiv = $('<div/>')
         .attr('id', 'endgame-message')
@@ -23,7 +24,8 @@ function endGame(message, img, $original) {
     $img.attr('src', img);
     promise
         .then(($popupDiv) => {
-            $('.container').addClass('disabled');
+            $('.container').addClass('stop-game');
+            $('iframe').hide();
             $popupDiv.show()
             return Promise.resolve($original);
         })
@@ -31,16 +33,17 @@ function endGame(message, img, $original) {
             $('.btn').on('click', function () {
                 $('.container').replaceWith($original.clone());
                 $popupDiv.hide();
+                $('iframe').show();
                 router.navigate('map');
             });
         });
 }
 
 export function get(params) {
-    const { id } = params;
+    const { level } = params;
     Promise.all([
         templateLoader.get('puzzle'),
-        data.getPuzzle(id)
+        data.getPuzzle(level)
     ])
         .then(([template, puzzle]) => {
             $root.html(template(puzzle));
@@ -51,7 +54,7 @@ export function get(params) {
         })
         .then(([puzzle, $original]) => {
             let counter = 0;
-            let pointsFunc = setInterval(function () { decreasePoints() }, 2000); //
+            let pointsFunc = setInterval(function () { decreasePoints() }, 2000); // promise
             function decreasePoints() {
                 let points = $('#current-points').html();
                 points -= 1;
@@ -91,11 +94,14 @@ export function get(params) {
                 if (counter === emptyCellsCount) {
                     clearInterval(pointsFunc);
 
-                    data.getReachedLevel()
+                    let points = $('#current-points').html();
+                    data.getReachedLevel() //puzzle.level
                         .then(currentLevel => {
-                            data.saveScore(points, currentLevel);
-                            const reachedLevel = currentLevel + 1;
-                            data.updateReachedLevel(reachedLevel);
+                            data.saveScore(points, puzzle.level);
+                            if (currentLevel == puzzle.level) {
+                                const reachedLevel = currentLevel + 1;
+                                data.updateReachedLevel(reachedLevel);
+                            }
                         });
 
                     endGame("Great! You have solved The Lemon-Miner puzzle!",
