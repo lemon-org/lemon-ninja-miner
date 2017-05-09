@@ -328,9 +328,18 @@ module.exports = (config) => {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(puzzles.sort((a,b)=> {
-                            return a._doc.level - b._doc.level;
-                        }));
+                         resolve(puzzles=[]);
+                    }
+                })
+            })
+        },
+        deleteAllPuzzles() {
+            return new Promise((resolve, reject) => {
+                puzzleModel.find((err, puzzles) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(puzzles=[]);
                     }
                 })
             })
