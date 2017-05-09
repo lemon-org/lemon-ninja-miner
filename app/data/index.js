@@ -135,7 +135,7 @@ function populatePuzzles(puzzleModel) {
             col = Math.floor((Math.random() * fieldSize - 1) + 1);
 
             let mine = { row: row, col: col };
-            while (mines.findIndex(m => m.row === mine.row & m.col === mine.col) !== -1) {
+            while (mines.findIndex(m => m.row === mine.row && m.col === mine.col) !== -1) {
                 mine.row = Math.floor((Math.random() * fieldSize - 1) + 1);
                 mine.col = Math.floor((Math.random() * fieldSize - 1) + 1);
             }
@@ -328,18 +328,9 @@ module.exports = (config) => {
                     if (err) {
                         reject(err);
                     } else {
-                         resolve(puzzles=[]);
-                    }
-                })
-            })
-        },
-        deleteAllPuzzles() {
-            return new Promise((resolve, reject) => {
-                puzzleModel.find((err, puzzles) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(puzzles=[]);
+                        resolve(puzzles.sort((a,b)=> {
+                            return a._doc.level - b._doc.level;
+                        }));
                     }
                 })
             })

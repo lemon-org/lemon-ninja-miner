@@ -14,7 +14,7 @@ app.use(session({ secret: 'lemon ninja miner' }));
 
 //static middleware
 app.use(express.static('./public'));
-app.use(express.static('./node_modules'))
+app.use(express.static('./node_modules'));
 
 //passport strategy setup
 // @ts-ignore
@@ -102,9 +102,9 @@ router.put('/reachedLevel', (req, res) => {
 
     if (user) {
         data.updateUser(reachedLevel, user._doc._id)
-            .then(raw => {
-                res.json({ reachedLevel });
-            })
+        .then(raw => {
+            res.json({reachedLevel});
+        })
     }
 })
 app.use('/api/users', router);
@@ -123,28 +123,23 @@ puzzleRouter.get('/:level', (req, res) => {
         .catch(err => res.json({ err }));
 })
 
-puzzleRouter.put('/:level', (req, res) => {
+puzzleRouter.put('/:level', (req,res) => {
     let level = req.params.level,
         score = req.body.score;
 
-    if (req.user) {
-        data.updatePuzzle(level, score.username, score.points)
-            .then(data => {
-                res.json({ data });
-            })
-    }
+        if(req.user){
+            data.updatePuzzle(level, score.username, score.points)
+                .then(data => {
+                    res.json({data});
+                })
+        }
 })
 
 puzzleRouter.get('/', (req, res) => {
     data.getAllPuzzles()
         .then(puzzles => {
-            console.log(puzzles);
             if (puzzles) {
-                puzzles = {};
-                puzzleRouter.put('/',(req, res) => {
-                     res.json({ puzzles });
-                }
-                // res.json({ puzzles });
+                res.json({ puzzles });
             }
         })
         .catch(err => res.json({ err }));
