@@ -23,6 +23,11 @@ SystemJS.config({
         // 'navigo':'../node_modules/navigo/lib/navigo.js',
 
         //unit test files
-        'data-tests': './tests/data-tests.js'
+        'data-tests': './tests/data-tests.js',
+        'mocha': "./mocha/mocha.js", 
+        'chai': "./chai/chai.js",
+        'sinon': "./sinon/pkg/sinon.js",
+        'sinon-chai': "./sinon-chai/lib/sinon-chai.js",
+         'crypto': "./bower_components/crypto-js/crypto-js.js"
     }
 });

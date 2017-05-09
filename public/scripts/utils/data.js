@@ -82,17 +82,17 @@ export function registerUser(username, passHash, email) {
         password: passHash,
         email,
         reachedLevel: 1
-};
+    };
 
-return requester.post('api/users/register', {
-    data: body
-})
-    .then(function (res) {
-        const user = res.dbUser;
-        localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
-        localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user._id);
-        return user;
-    });
+    return requester.post('api/users/register', {
+        data: body
+        })
+        .then(function (res) {
+            const user = res.dbUser;
+            localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
+            localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user._id);
+            return user;
+        });
 }
 
 export function login(username, passHash) {

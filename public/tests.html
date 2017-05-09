@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Data tests</title>
+    <title>Tests</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./mocha/mocha.css" />
 
@@ -13,24 +13,13 @@
     <script src="./sinon-chai/lib/sinon-chai.js"></script>
     <script src="./bower_components/crypto-js/crypto-js.js"></script> 
     <script src="./system.config.js"></script>
-
 </head>
 
 <body>
     <div id="mocha"></div>
     <!-- Unit tests -->
     <script>
-        mocha.setup('bdd');
-        const { expect } = chai;
-    </script>
-    
-    <script>
         System.import('data-tests');
-    </script>
-
-    
-    <script>
-        mocha.run();
     </script>
 </body>
 
