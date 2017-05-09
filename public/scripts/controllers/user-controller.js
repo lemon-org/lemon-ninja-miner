@@ -10,6 +10,7 @@ export function get() {
             $root.html(template);
         })
         .then(() => {
+            //fix this stupid thing
             $('#btn-login').on('click', () => {
                 login();
             });
@@ -108,6 +109,7 @@ export function register() {
 };
 
 export function login() {
+   
     const $username = $('#username-log'),
         username = $username.val(),
         $password = $('#password-log'),

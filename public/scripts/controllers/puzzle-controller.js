@@ -2,9 +2,7 @@ import { templateLoader } from 'template-loader';
 import * as data from 'data';
 import { router } from 'main';
 
-//reaching next level
-// adding scores
-
+// fix empty cell property - level4
 const $root = $('#root'),
     $popupDiv = $('<div/>')
         .attr('id', 'endgame-message')
@@ -56,7 +54,7 @@ export function get(params) {
         })
         .then(([puzzle, $original]) => {
             let counter = 0;
-            let pointsFunc = setInterval(function () { decreasePoints() }, 2000); //
+            let pointsFunc = setInterval(function () { decreasePoints() }, 2000); // promise
             function decreasePoints() {
                 let points = $('#current-points').html();
                 points -= 1;
@@ -96,7 +94,7 @@ export function get(params) {
                 if (counter === emptyCellsCount) {
                     clearInterval(pointsFunc);
 
-                    data.getReachedLevel() //puzzle.level
+                    data.getReachedLevel() 
                         .then(currentLevel => {
                             data.saveScore(points, puzzle.level);
                             if (currentLevel == puzzle.level) {
