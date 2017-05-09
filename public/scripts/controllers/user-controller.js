@@ -1,5 +1,5 @@
 import { templateLoader } from 'template-loader';
-import * as data  from 'data';
+import * as data from 'data';
 import { validator } from 'validator';
 
 const $root = $('#root');
@@ -10,6 +10,9 @@ export function get() {
             $root.html(template);
         })
         .then(() => {
+            $('#btn-login').on('click', () => {
+                login();
+            });
             $('#login-form-link').click(function (e) {
                 $("#login-form").delay(100).fadeIn(100);
                 $("#register-form").fadeOut(100);
@@ -106,7 +109,7 @@ export function register() {
 
 export function login() {
     const $username = $('#username-log'),
-    username = $username.val(),
+        username = $username.val(),
         $password = $('#password-log'),
         password = $password.val(),
         passHash = CryptoJS.SHA1(username + password).toString();
@@ -135,6 +138,6 @@ export function logout() {
     data.logoutUser()
         .then(() => {
             toastr.success(`User logged out!`);
-            location.href = '';
+            window.location = '';
         })
 }
