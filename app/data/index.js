@@ -227,7 +227,8 @@ function populatePuzzles(puzzleModel) {
                 return c.map(cell => {
                     return {
                         row: cell.row,
-                        col: cell.col
+                        col: cell.col,
+                        isMine: cell.isMine
                     }
                 })
             }),
@@ -296,14 +297,14 @@ module.exports = (config) => {
                 })
             })
         },
-        getPuzzleByLevel(level){
+        getPuzzleByLevel(level) {
             return new Promise((resolve, reject) => {
-                puzzleModel.findOne({level: level}, (err, puzzle) => {
-                    if(err){
+                puzzleModel.findOne({ level: level }, (err, puzzle) => {
+                    if (err) {
                         reject(err);
-                    }else {
-                        if(puzzle){
-                            puzzle.scores = puzzle.scores.sort((a , b)=> b.score - a.score).slice(0, 3);
+                    } else {
+                        if (puzzle) {
+                            puzzle.scores = puzzle.scores.sort((a, b) => b.score - a.score).slice(0, 3);
                             resolve(puzzle)
                         }
                     }
