@@ -215,7 +215,7 @@ function populatePuzzles(puzzleModel) {
         while (newPuzzle.size < 5) {
             newPuzzle = generateNextPuzzle(newPuzzle);
         }
-        //newPuzzle.level = i + 1;
+        newPuzzle.level = i + 1;
         puzzles.push(newPuzzle);
 
     }
@@ -317,7 +317,9 @@ module.exports = (config) => {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(puzzles);
+                        resolve(puzzles.sort((a,b)=> {
+                            return a._doc.level - b._doc.level;
+                        }));
                     }
                 })
             })
