@@ -54,6 +54,8 @@ export function get(params) {
         })
         .then(([puzzle, $original]) => {
             let counter = 0;
+            const minesCount = (puzzle.size * puzzle.size / 2 | 0) + 1 - puzzle.difficultness,
+                emptyCellsCount = puzzle.size * puzzle.size - minesCount;
             let pointsFunc = setInterval(function () { decreasePoints() }, 2000); // promise
             function decreasePoints() {
                 let points = $('#current-points').html();
@@ -69,7 +71,7 @@ export function get(params) {
             }
 
             $('.cell').on('click', function () {
-                const emptyCellsCount = (puzzle.size * puzzle.size / 2 | 0) + puzzle.difficultness;
+
                 const col = $(this).parent().children().index($(this));
                 const row = $(this).parent().parent().children().index($(this).parent());
                 $(this).removeClass('close');
