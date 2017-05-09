@@ -33,7 +33,6 @@ export function getReachedLevel() {
 
     return requester.get('api/users/reachedLevel')
         .then(function (res) {
-
             const reachedLevel = res.reachedLevel;
             return reachedLevel;
         });
@@ -80,7 +79,6 @@ export function saveScore(points, level) {
 export function registerUser(username, passHash, email) {
     const body = {
         username,
-,
         password: passHash,
         email,
         reachedLevel: 1
@@ -90,10 +88,8 @@ return requester.post('api/users/register', {
     data: body
 })
     .then(function (res) {
-
         const user = res.dbUser;
         localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
-
         localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user._id);
         return user;
     });
